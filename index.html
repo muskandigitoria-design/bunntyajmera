@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BANTI AJMERA™ | VIP Cricket Prediction</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>BANTI AJMERA™ | Luxury Cricket VIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-gold: #ffcc00;
-            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --dark-bg: #050505;
-            --glass-bg: rgba(0, 0, 0, 0.6);
-            --telegram-blue: #0088cc;
-            --pulse-color: rgba(0, 136, 204, 0.6);
+            --gold: #ffcc00;
+            --gold-dark: #bf953f;
+            --gold-light: #fcf6ba;
+            --bg-black: #0a0a0a;
+            --card-bg: rgba(15, 15, 15, 0.8);
+            --telegram: #0088cc;
         }
 
         * {
@@ -22,245 +22,256 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark-bg);
-            color: white;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-black);
+            color: #ffffff;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* --- Animated Grid Background --- */
-        .grid-bg {
+        /* --- Animated Background Elements --- */
+        .bg-wrapper {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px;
             z-index: -1;
-            animation: gridMove 20s linear infinite;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
         }
 
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; }
+        .orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 204, 0, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: move 15s infinite alternate;
         }
 
-        .bg-glow {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 204, 0, 0.1) 0%, transparent 70%);
-            z-index: -1;
-            filter: blur(80px);
-            animation: float 8s infinite alternate;
+        @keyframes move {
+            from { transform: translate(-20%, -20%); }
+            to { transform: translate(20%, 20%); }
         }
 
-        @keyframes float {
-            0% { transform: translate(-30%, -30%); }
-            100% { transform: translate(30%, 30%); }
-        }
-
-        /* --- Main Card --- */
-        .container {
-            width: 92%;
-            max-width: 420px;
-            padding: 40px 25px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 40px;
+        /* --- Glass Card --- */
+        .card {
+            width: 90%;
+            max-width: 400px;
+            padding: 40px 30px;
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 204, 0, 0.2);
+            border-radius: 30px;
             text-align: center;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(255, 204, 0, 0.05);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
             position: relative;
-            z-index: 10;
+            overflow: hidden;
         }
 
-        /* --- Logo Section --- */
-        .logo-wrapper {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, var(--gold));
+            animation: rotate 6s linear infinite;
+            z-index: -1;
+            opacity: 0.3;
         }
 
-        .logo-container {
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- Logo Styling --- */
+        .profile-area {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .logo-ring {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+        }
+
+        .logo-ring img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            border: 3px solid var(--primary-gold);
-            overflow: hidden;
-            z-index: 2;
-            box-shadow: 0 0 25px var(--primary-gold);
-        }
-
-        .logo-container img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
+            border: 4px solid #111;
         }
 
-        /* --- Typography --- */
-        h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3.8rem;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 0.9;
-            margin-bottom: 5px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
-        }
-
-        .subtitle {
-            font-size: 0.9rem;
-            color: #ccc;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        /* --- Pulse Growing Button --- */
-        .join-btn {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            background: linear-gradient(90deg, #0088cc, #00c2ff);
-            color: white;
-            text-decoration: none;
-            padding: 22px;
-            font-size: 1.4rem;
-            font-weight: 800;
-            border-radius: 20px;
+        /* --- Text Styling --- */
+        .verified {
+            font-size: 10px;
+            font-weight: 900;
+            color: #00d4ff;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 136, 204, 0.4);
-            animation: pulse-grow 2s infinite;
-        }
-
-        @keyframes pulse-grow {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7);
-            }
-            70% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 15px rgba(0, 136, 204, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0);
-            }
-        }
-
-        .join-btn:hover {
-            transform: scale(1.08);
-            filter: brightness(1.1);
-        }
-
-        /* --- Features --- */
-        .features {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.4s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .feature-item:hover {
-            border-color: var(--primary-gold);
-            background: rgba(255, 204, 0, 0.05);
-            transform: translateX(5px);
-        }
-
-        .verified-badge {
-            color: #4db8ff;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 5px;
         }
 
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            line-height: 1;
+            background: linear-gradient(to bottom, #fff 30%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-weight: 300;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            color: #aaa;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+        }
+
+        /* --- High-Impact Button --- */
+        .btn-telegram {
+            display: block;
+            background: linear-gradient(90deg, #0088cc, #00c2ff);
+            color: white;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+        }
+
+        .btn-telegram:hover {
+            transform: scale(1.03) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 136, 204, 0.5);
+        }
+
+        .btn-telegram::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 50%;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: skewX(-30deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 150%; }
+        }
+
+        /* --- Feature List --- */
+        .stats {
+            margin-top: 30px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 204, 0, 0.1);
+            border-color: var(--gold);
+            transform: scale(1.02);
+        }
+
+        .stat-item b { color: var(--gold); }
+
+        /* --- Footer --- */
         footer {
             margin-top: 25px;
-            font-size: 0.75rem;
-            color: #888;
-            text-align: center;
+            font-size: 0.7rem;
+            color: #555;
+            letter-spacing: 1px;
         }
 
         footer a {
-            color: var(--primary-gold);
+            color: var(--gold-dark);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: bold;
         }
 
-        /* Responsive */
-        @media (max-width: 400px) {
-            h1 { font-size: 3rem; }
-            .container { padding: 30px 20px; }
+        /* Particles */
+        .particles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="grid-bg"></div>
-    <div class="bg-glow"></div>
+    <div class="bg-wrapper">
+        <div class="orb"></div>
+        <div class="orb" style="right:0; bottom:0; animation-delay: -5s;"></div>
+    </div>
 
-    <div class="container">
-        <div class="logo-wrapper">
-            <div class="logo-container">
+    <div class="card">
+        <div class="profile-area">
+            <div class="logo-ring">
                 <img src="https://fantasticczone.site/wp-content/uploads/2026/02/89743.jpg" alt="Banti Ajmera">
             </div>
         </div>
 
-        <div class="verified-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            OFFICIAL VERIFIED
+        <div class="verified">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"/></svg>
+            Verified Analyst
         </div>
 
-        <h1>BANTI AJMERA™</h1>
-        <p class="subtitle">KING OF CRICKET PREDICTION</p>
+        <h1>BANTI AJMERA</h1>
+        <p class="tagline">The King of Cricket</p>
         
-        <a href="https://t.me/+61yi4RuGCLExYTQ1" class="join-btn">
-            Join Telegram Now
+        <a href="https://t.me/+61yi4RuGCLExYTQ1" class="btn-telegram">
+            Join VIP Telegram
         </a>
 
-        <div class="features">
-            <div class="feature-item"><span>⚡</span> <b>95% ACCURACY</b> GUARANTEED</div>
-            <div class="feature-item"><span>🔥</span> <b>BACK-TO-BACK</b> WINNER</div>
-            <div class="feature-item"><span>🏏</span> <b>IPL & PSL</b> SPECIALIST</div>
+        <div class="stats">
+            <div class="stat-item"><span>💎</span> <b>95% ACCURACY</b> GUARANTEED</div>
+            <div class="stat-item"><span>🏆</span> <b>IPL & PSL</b> UNDEFEATED</div>
+            <div class="stat-item"><span>🚀</span> <b>FASTEST</b> SESSİON UPDATES</div>
         </div>
-    </div>
 
-    <footer>
-        Ads managed by <br>
-        <a href="https://t.me/+TRlJl628l-FkMWE9" target="_blank">Nexgrowww Agency</a>
-    </footer>
+        <footer>
+            POWERED BY <br>
+            <a href="https://t.me/+TRlJl628l-FkMWE9">NEXGROWWW AGENCY</a>
+        </footer>
+    </div>
 
 </body>
 </html>

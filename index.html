@@ -3,247 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BANTI AJMERA™ | Luxury Cricket VIP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>BANTI AJMERA™ | Cricket Royalty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;600;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #ffcc00;
-            --gold-dark: #bf953f;
-            --gold-light: #fcf6ba;
-            --bg-black: #050505;
-            --card-bg: rgba(10, 10, 10, 0.85);
-            --telegram: #0088cc;
-            --glow-color: rgba(255, 204, 0, 0.5);
+            --gold-glow: rgba(255, 204, 0, 0.4);
+            --bg: #030303;
+            --accent: #00f2ff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-black);
-            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: white;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             overflow: hidden;
+            perspective: 1000px;
         }
 
-        /* --- Animated Grid Background --- */
-        .bg-grid {
+        /* --- Animated Cyber Grid --- */
+        .grid-container {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            perspective: 1000px;
+            background: radial-gradient(circle at center, transparent 20%, #000 100%);
             z-index: -1;
         }
 
-        .bg-grid::after {
-            content: '';
+        .grid {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-black) 80%);
-        }
-
-        /* Moving Grid Animation */
-        .grid-move {
-            position: absolute;
-            width: 200%;
-            height: 200%;
+            width: 200vw;
+            height: 200vh;
             top: -50%;
             left: -50%;
             background-image: 
-                linear-gradient(rgba(255, 204, 0, 0.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 204, 0, 0.07) 1px, transparent 1px);
-            background-size: 60px 60px;
-            transform: rotateX(45deg);
-            animation: gridMoving 20s linear infinite;
+                linear-gradient(to right, rgba(255, 204, 0, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 204, 0, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: rotateX(60deg);
+            animation: moveGrid 10s linear infinite;
         }
 
-        @keyframes gridMoving {
-            0% { transform: rotateX(45deg) translateY(0); }
-            100% { transform: rotateX(45deg) translateY(60px); }
+        @keyframes moveGrid {
+            0% { transform: rotateX(60deg) translateY(0); }
+            100% { transform: rotateX(60deg) translateY(50px); }
         }
 
-        /* --- Card Layout & Entrance --- */
+        /* --- Floating Luxury Card --- */
         .card {
             width: 90%;
-            max-width: 400px;
-            padding: 40px 30px;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            border-radius: 35px;
+            max-width: 380px;
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 204, 0, 0.2);
+            border-radius: 40px;
+            padding: 40px 25px;
             text-align: center;
-            box-shadow: 0 0 50px rgba(0,0,0,1);
-            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(30px);
             position: relative;
-            z-index: 10;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,204,0,0.05);
+            animation: cardFloat 6s ease-in-out infinite;
         }
 
-        @keyframes cardAppear {
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-15px) rotateY(5deg); }
         }
 
-        /* --- Profile Image --- */
-        .logo-ring {
-            width: 140px;
-            height: 140px;
+        /* --- Profile Image with Outer Pulse --- */
+        .profile-wrap {
+            position: relative;
+            width: 130px;
+            height: 130px;
             margin: 0 auto 20px;
-            border-radius: 50%;
-            padding: 5px;
-            background: linear-gradient(135deg, var(--gold), #fff, var(--gold-dark));
-            position: relative;
-            animation: float 4s ease-in-out infinite;
         }
 
-        .logo-ring img {
+        .profile-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            animation: ripple 2s linear infinite;
+        }
+
+        .logo-ring {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid #000;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 20px var(--gold-glow);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .logo-ring img { width: 100%; height: 100%; object-fit: cover; }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.3); opacity: 0; }
         }
 
-        /* --- Text Styling --- */
-        h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 4.5rem;
-            line-height: 0.9;
-            background: linear-gradient(180deg, #fff 40%, var(--gold) 100%);
+        /* --- Typography --- */
+        .verified-badge {
+            background: linear-gradient(90deg, var(--accent), #0072ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(255, 204, 0, 0.2));
-        }
-
-        .tagline {
-            font-size: 0.75rem;
-            letter-spacing: 6px;
-            color: #ccc;
-            margin: 10px 0 30px;
-            text-transform: uppercase;
-        }
-
-        /* --- The Growing Pulse Button --- */
-        .btn-telegram {
-            display: block;
-            background: linear-gradient(90deg, #0088cc, #00c2ff);
-            color: white;
-            text-decoration: none;
-            padding: 22px;
-            border-radius: 18px;
+            font-size: 11px;
             font-weight: 900;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            position: relative;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: pulseGlow 2s infinite;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 136, 204, 0.4);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
         }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 20px 15px rgba(0, 136, 204, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 136, 204, 0); }
-        }
-
-        .btn-telegram:hover {
-            transform: scale(1.08);
-            filter: brightness(1.2);
-        }
-
-        /* --- Stats Staggered Animation --- */
-        .stats {
-            margin-top: 30px;
-            display: grid;
-            gap: 12px;
-        }
-
-        .stat-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 14px;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            opacity: 0;
-            animation: slideIn 0.5s ease forwards;
-        }
-
-        .stat-item:nth-child(1) { animation-delay: 0.5s; }
-        .stat-item:nth-child(2) { animation-delay: 0.7s; }
-        .stat-item:nth-child(3) { animation-delay: 0.9s; }
-
-        @keyframes slideIn {
-            to { opacity: 1; transform: translateX(0); }
-            from { opacity: 0; transform: translateX(-20px); }
-        }
-
-        .stat-item b { color: var(--gold); }
-
-        footer {
-            margin-top: 30px;
-            font-size: 0.65rem;
-            color: #666;
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4.2rem;
+            line-height: 0.85;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 2px;
         }
 
-        footer a { color: var(--gold); text-decoration: none; font-weight: bold; }
+        .tagline {
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* --- High-Impact Magnetic Button --- */
+        .btn-vip {
+            display: block;
+            background: linear-gradient(45deg, #0088cc, #00f2ff, #0088cc);
+            background-size: 200% auto;
+            color: white;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 20px;
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            transition: 0.5s;
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
+            animation: gradientMove 3s ease infinite, grow 2s infinite alternate;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes grow {
+            from { transform: scale(1); box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2); }
+            to { transform: scale(1.05); box-shadow: 0 15px 40px rgba(0, 242, 255, 0.5); }
+        }
+
+        /* --- Stats Grid --- */
+        .stats-container {
+            margin-top: 30px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
+            border-radius: 15px;
+            border-left: 3px solid var(--gold);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 204, 0, 0.1);
+            transform: scale(1.02);
+        }
+
+        .gold-text { color: var(--gold); font-weight: 900; }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 30px;
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 2px;
+        }
+
+        footer a { color: #666; text-decoration: none; }
 
     </style>
 </head>
 <body>
 
-    <div class="bg-grid">
-        <div class="grid-move"></div>
+    <div class="grid-container">
+        <div class="grid"></div>
     </div>
 
     <div class="card">
-        <div class="logo-ring">
-            <img src="https://fantasticczone.site/wp-content/uploads/2026/02/89743.jpg" alt="Banti Ajmera">
+        <div class="profile-wrap">
+            <div class="logo-ring">
+                <img src="https://fantasticczone.site/wp-content/uploads/2026/02/89743.jpg" alt="Banti Ajmera">
+            </div>
         </div>
 
-        <div style="color: #00d4ff; font-size: 10px; font-weight: 800; letter-spacing: 2px; margin-bottom: 5px;">
-            ✓ VERIFIED GOLD ANALYST
-        </div>
+        <span class="verified-badge">✦ OFFICIAL VIP PARTNER ✦</span>
 
-        <h1>BANTI AJMERA</h1>
-        <p class="tagline">The King of Cricket</p>
+        <h1>BANTI<br>AJMERA</h1>
+        <p class="tagline">The King Maker</p>
         
-        <a href="https://t.me/+61yi4RuGCLExYTQ1" class="btn-telegram">
-            JOIN VIP TELEGRAM
+        <a href="https://t.me/+61yi4RuGCLExYTQ1" class="btn-vip">
+            JOIN VIP ACCESS
         </a>
 
-        <div class="stats">
-            <div class="stat-item"><span>🔥</span> <b>95% ACCURACY</b> GUARANTEED</div>
-            <div class="stat-item"><span>🏏</span> <b>IPL & PSL</b> UNDEFEATED</div>
-            <div class="stat-item"><span>💰</span> <b>MAX PROFIT</b> STRATEGY</div>
+        <div class="stats-container">
+            <div class="stat-card">
+                <span>ACCURACY RATE</span>
+                <span class="gold-text">98.4%</span>
+            </div>
+            <div class="stat-card">
+                <span>MATCH COVERAGE</span>
+                <span class="gold-text">GLOBAL</span>
+            </div>
+            <div class="stat-card">
+                <span>UPDATES</span>
+                <span class="gold-text">INSTANT</span>
+            </div>
         </div>
 
         <footer>
-            POWERED BY <br>
+            DESIGNED FOR THE ELITE <br>
             <a href="https://t.me/+TRlJl628l-FkMWE9">NEXGROWWW AGENCY</a>
         </footer>
     </div>

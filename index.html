@@ -1,294 +1,269 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BANTI AJMERA™ | Exclusive Access</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> Shikha Reddy</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-gold: #D4AF37;
-            --soft-gold: #f3cf7a;
-            --deep-black: #050505;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --gold: #ffcc00;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--deep-black);
-            color: #ffffff;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            perspective: 1200px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* --- ENHANCED ANIMATED BACKGROUND --- */
-        .bg-animate {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
-            overflow: hidden;
-        }
-
-        /* Animated Particles / Stars */
-        .particles {
-            position: absolute;
+        body, html {
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0));
-            background-repeat: repeat;
-            background-size: 200px 200px;
-            animation: starsMove 100s linear infinite;
-            opacity: 0.3;
+            background-color: #050505;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            position: fixed;
         }
 
-        @keyframes starsMove {
-            from { transform: translateY(0); }
-            to { transform: translateY(-2000px); }
+        /* --- BLURRY AURA ANIMATION --- */
+        .background-wrapper {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.6;
         }
 
-        /* Improved Floating 3D Orbs */
-        .orb {
+        .blob {
             position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #b38728;
             border-radius: 50%;
-            filter: blur(100px);
-            animation: float3d 15s infinite ease-in-out;
-            opacity: 0.2;
-        }
-        .orb-1 { 
-            width: 500px; height: 500px; 
-            background: var(--primary-gold); 
-            top: -10%; left: -10%; 
-        }
-        .orb-2 { 
-            width: 400px; height: 400px; 
-            background: #0072ff; 
-            bottom: -5%; right: -5%; 
-            animation-delay: -7s; 
+            animation: move 20s infinite alternate;
         }
 
-        @keyframes float3d {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(100px, 150px) scale(1.2); }
-            66% { transform: translate(-50px, 50px) scale(0.8); }
+        .blob-1 { top: -10%; left: -10%; background: #aa771c; }
+        .blob-2 { bottom: -10%; right: -10%; background: #bf953f; animation-duration: 25s; }
+        .blob-3 { top: 40%; left: 30%; width: 200px; height: 200px; background: #fcf6ba; animation-duration: 15s; }
+
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(100px, 100px) scale(1.2); }
         }
 
-        /* --- 3D Floating Container --- */
         .container {
-            width: 95%;
-            max-width: 420px;
-            padding: 40px 30px;
-            background: rgba(15, 15, 15, 0.7);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-            transform-style: preserve-3d;
-            animation: cardEntrance 1.5s ease-out forwards;
-            transition: transform 0.1s ease-out; /* For JS tilt effect */
+            z-index: 10;
         }
 
-        @keyframes cardEntrance {
-            from { opacity: 0; transform: translateZ(-200px) rotateX(20deg); }
-            to { opacity: 1; transform: translateZ(0) rotateX(0); }
+        .logo-wrapper {
+            margin-bottom: 15px;
         }
 
-        /* --- Profile Image --- */
-        .image-outer {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 25px;
+        .logo {
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--primary-gold), #5d4a1f);
-            position: relative;
+            padding: 3px;
+            background: var(--gold-gradient);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: float 4s ease-in-out infinite;
+            margin: 0 auto;
         }
 
-        .image-outer::after {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            border: 1px solid var(--primary-gold);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: pulse-ring 2s infinite;
-        }
-
-        .image-inner {
+        .logo img {
             width: 100%; height: 100%;
             border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--deep-black);
-        }
-
-        .image-inner img { width: 100%; height: 100%; object-fit: cover; }
-
-        @keyframes pulse-ring {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.3); opacity: 0; }
-        }
-
-        /* --- Typography --- */
-        .badge {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: var(--primary-gold);
-            font-weight: 700;
-            margin-bottom: 10px;
+            object-fit: cover;
+            border: 2px solid #000;
             display: block;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            line-height: 1;
-            margin-bottom: 8px;
-            background: linear-gradient(to bottom, #fff 30%, var(--soft-gold));
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 7vw, 2.5rem);
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            font-weight: 300;
-            font-size: 12px;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            color: #777;
-            margin-bottom: 35px;
-        }
-
-        /* --- Button --- */
-        .cta-button {
-            display: block;
-            background: #ffffff;
-            color: #000;
-            text-decoration: none;
-            padding: 20px;
-            border-radius: 20px;
-            font-weight: 900;
-            font-size: 1.2rem;
+            margin-bottom: 5px;
             letter-spacing: 1px;
-            position: relative;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
-            animation: pulse-grow 2s infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
 
-        .cta-button:hover {
-            background: var(--primary-gold);
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
+        .team-tag {
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            color: #fff;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 600;
+            opacity: 0.8;
         }
 
-        @keyframes pulse-grow {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+        .glass-panel {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        /* --- Info Grid --- */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 25px;
+        .glass-panel p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #efefef;
         }
 
-        .info-item {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 15px 5px;
-            border-radius: 18px;
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
         }
 
-        .info-label { font-size: 8px; color: #666; letter-spacing: 1px; display: block; margin-bottom: 4px; }
-        .info-value { font-size: 14px; font-weight: 800; color: #fff; }
+        .stat-item b { color: var(--gold); font-size: 1.2rem; }
+        .stat-item p { font-size: 0.65rem; text-transform: uppercase; opacity: 0.6; }
 
-        /* --- Footer --- */
+        .btn-telegram {
+            width: 100%;
+            max-width: 320px;
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #000;
+            background: var(--gold-gradient);
+            text-decoration: none;
+            border-radius: 50px;
+            text-transform: uppercase;
+            display: block;
+            box-shadow: 0 15px 35px rgba(179, 135, 40, 0.4);
+            animation: zoomPulse 2s infinite ease-in-out;
+        }
+
+        #timer-text {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            color: #000;
+            opacity: 0.8;
+        }
+
+        @keyframes zoomPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .footer {
-            margin-top: 40px;
-            font-size: 10px;
-            color: #444;
-            letter-spacing: 2px;
+            margin-top: 25px;
+            font-size: 0.7rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
+            text-align: center;
         }
 
-        .footer a { color: #666; text-decoration: none; transition: 0.3s; }
-        .footer a:hover { color: var(--primary-gold); }
-
+        .agency-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-animate">
-        <div class="particles"></div>
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
+    <div class="background-wrapper">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
-    <div class="container" id="mainCard">
-        <div class="profile-area">
-            <div class="image-outer">
-                <div class="image-inner">
-                    <img src="https://fantasticczone.site/wp-content/uploads/2026/02/89743.jpg" alt="Banti Ajmera">
+    <div class="container">
+        <div class="logo-wrapper">
+            <div class="logo">
+                <img src="https://fantasticczone.site/wp-content/uploads/2026/02/89743.jpg" alt="Logo">
+            </div>
+        </div>
+
+        <h1>Banti Ajmera
+</h1>
+        <div class="team-tag">Elite Cricket Prediction</div>
+
+        <div class="glass-panel">
+            <p>Join the most accurate cricket prediction channel. Get back-to-back winning reports for all major leagues.</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <b>95%</b>
+                    <p>Accuracy</p>
+                </div>
+                <div class="stat-item">
+                    <b>50K+</b>
+                    <p>Members</p>
+                </div>
+                <div class="stat-item">
+                    <b>FREE</b>
+                    <p>Access</p>
                 </div>
             </div>
         </div>
 
-        <span class="badge">Verified Official</span>
-        <h1>Banti Ajmera</h1>
-        <p class="subtitle">The King Maker</p>
-        
-        <a href="https://t.me/+61yi4RuGCLExYTQ1" class="cta-button">
-            JOIN VIP CHANNEL
+        <a href="https://t.me/+61yi4RuGCLExYTQ1" class="btn-telegram" id="redirect-btn">
+            JOIN TELEGRAM NOW
+            
         </a>
 
-        <div class="info-grid">
-            <div class="info-item">
-                <span class="info-label">ACCURACY</span>
-                <span class="info-value">98.4%</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">NETWORK</span>
-                <span class="info-value">GLOBAL</span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">ACCESS</span>
-                <span class="info-value">VIP</span>
-            </div>
-        </div>
-
         <div class="footer">
-            ESTABLISHED AUTHORITY <br>
-            POWERED BY <a href="https://t.me/+TRlJl628l-FkMWE9">NEXGROWWW AGENCY</a>
+            <span>✦ 18+ | PLAY RESPONSIBLY ✦</span>
+            <p style="margin-top: 10px;">Ads managed by <br> 
+                <a href="https://telegram.me/+TRlJl628l-FkMWE9" class="agency-link">NEXGROWW AGENCY</a>
+            </p>
         </div>
     </div>
 
     <script>
-        // Interactive Mouse Parallax Effect
-        const card = document.getElementById('mainCard');
-        document.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
+       //let timeLeft = 3;
+        const timerElement = document.getElementById('timer-text');
+  //     const targetUrl = "https://t.me/+61yi4RuGCLExYTQ1";
 
-        // Reset on mouse leave
-        document.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-        });
-    </script>
+    //    const countdown = setInterval(() => {
+            timeLeft--;
+       //   if (timeLeft <= 0) {
+                clearInterval(countdown);
+          //      window.location.href = targetUrl;
+            } else {
+          //  timerElement.textContent = `Redirecting in ${timeLeft}s...`;
+            }
+  //  }, 1000);
+   // </script>
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)

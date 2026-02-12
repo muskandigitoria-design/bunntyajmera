@@ -10,9 +10,10 @@
             --gold: #ffcc00;
             --gold-dark: #bf953f;
             --gold-light: #fcf6ba;
-            --bg-black: #0a0a0a;
-            --card-bg: rgba(15, 15, 15, 0.8);
+            --bg-black: #050505;
+            --card-bg: rgba(10, 10, 10, 0.85);
             --telegram: #0088cc;
+            --glow-color: rgba(255, 204, 0, 0.5);
         }
 
         * {
@@ -29,81 +30,83 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* --- Animated Background Elements --- */
-        .bg-wrapper {
+        /* --- Animated Grid Background --- */
+        .bg-grid {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 204, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 204, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 1000px;
             z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
         }
 
-        .orb {
+        .bg-grid::after {
+            content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 204, 0, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(60px);
-            animation: move 15s infinite alternate;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-black) 80%);
         }
 
-        @keyframes move {
-            from { transform: translate(-20%, -20%); }
-            to { transform: translate(20%, 20%); }
+        /* Moving Grid Animation */
+        .grid-move {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background-image: 
+                linear-gradient(rgba(255, 204, 0, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 204, 0, 0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: rotateX(45deg);
+            animation: gridMoving 20s linear infinite;
         }
 
-        /* --- Glass Card --- */
+        @keyframes gridMoving {
+            0% { transform: rotateX(45deg) translateY(0); }
+            100% { transform: rotateX(45deg) translateY(60px); }
+        }
+
+        /* --- Card Layout & Entrance --- */
         .card {
             width: 90%;
             max-width: 400px;
             padding: 40px 30px;
             background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 204, 0, 0.2);
-            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            border-radius: 35px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+            animation: cardAppear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
             position: relative;
-            overflow: hidden;
+            z-index: 10;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, var(--gold));
-            animation: rotate 6s linear infinite;
-            z-index: -1;
-            opacity: 0.3;
+        @keyframes cardAppear {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- Logo Styling --- */
-        .profile-area {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
+        /* --- Profile Image --- */
         .logo-ring {
-            width: 130px;
-            height: 130px;
-            margin: 0 auto;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
             border-radius: 50%;
             padding: 5px;
-            background: linear-gradient(45deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
-            box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
+            background: linear-gradient(135deg, var(--gold), #fff, var(--gold-dark));
+            position: relative;
+            animation: float 4s ease-in-out infinite;
         }
 
         .logo-ring img {
@@ -111,81 +114,64 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #111;
+            border: 5px solid #000;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         /* --- Text Styling --- */
-        .verified {
-            font-size: 10px;
-            font-weight: 900;
-            color: #00d4ff;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
         h1 {
             font-family: 'Bebas Neue', cursive;
-            font-size: 4rem;
-            line-height: 1;
-            background: linear-gradient(to bottom, #fff 30%, var(--gold) 100%);
+            font-size: 4.5rem;
+            line-height: 0.9;
+            background: linear-gradient(180deg, #fff 40%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
+            filter: drop-shadow(0 5px 15px rgba(255, 204, 0, 0.2));
         }
 
         .tagline {
-            font-weight: 300;
-            font-size: 0.8rem;
-            letter-spacing: 5px;
-            color: #aaa;
-            margin-bottom: 35px;
+            font-size: 0.75rem;
+            letter-spacing: 6px;
+            color: #ccc;
+            margin: 10px 0 30px;
             text-transform: uppercase;
         }
 
-        /* --- High-Impact Button --- */
+        /* --- The Growing Pulse Button --- */
         .btn-telegram {
             display: block;
             background: linear-gradient(90deg, #0088cc, #00c2ff);
             color: white;
             text-decoration: none;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 22px;
+            border-radius: 18px;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             text-transform: uppercase;
             position: relative;
-            overflow: hidden;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.3);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulseGlow 2s infinite;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 136, 204, 0.4);
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 20px 15px rgba(0, 136, 204, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 136, 204, 0); }
         }
 
         .btn-telegram:hover {
-            transform: scale(1.03) translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 136, 204, 0.5);
+            transform: scale(1.08);
+            filter: brightness(1.2);
         }
 
-        .btn-telegram::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -100%;
-            width: 50%;
-            height: 200%;
-            background: rgba(255,255,255,0.2);
-            transform: skewX(-30deg);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            100% { left: 150%; }
-        }
-
-        /* --- Feature List --- */
+        /* --- Stats Staggered Animation --- */
         .stats {
             margin-top: 30px;
             display: grid;
@@ -193,78 +179,67 @@
         }
 
         .stat-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 14px;
+            border-radius: 15px;
             font-size: 0.85rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: 0.3s;
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
         }
 
-        .stat-item:hover {
-            background: rgba(255, 204, 0, 0.1);
-            border-color: var(--gold);
-            transform: scale(1.02);
+        .stat-item:nth-child(1) { animation-delay: 0.5s; }
+        .stat-item:nth-child(2) { animation-delay: 0.7s; }
+        .stat-item:nth-child(3) { animation-delay: 0.9s; }
+
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateX(-20px); }
         }
 
         .stat-item b { color: var(--gold); }
 
-        /* --- Footer --- */
         footer {
-            margin-top: 25px;
-            font-size: 0.7rem;
-            color: #555;
-            letter-spacing: 1px;
+            margin-top: 30px;
+            font-size: 0.65rem;
+            color: #666;
+            letter-spacing: 2px;
         }
 
-        footer a {
-            color: var(--gold-dark);
-            text-decoration: none;
-            font-weight: bold;
-        }
+        footer a { color: var(--gold); text-decoration: none; font-weight: bold; }
 
-        /* Particles */
-        .particles {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
 
-    <div class="bg-wrapper">
-        <div class="orb"></div>
-        <div class="orb" style="right:0; bottom:0; animation-delay: -5s;"></div>
+    <div class="bg-grid">
+        <div class="grid-move"></div>
     </div>
 
     <div class="card">
-        <div class="profile-area">
-            <div class="logo-ring">
-                <img src="https://fantasticczone.site/wp-content/uploads/2026/02/89743.jpg" alt="Banti Ajmera">
-            </div>
+        <div class="logo-ring">
+            <img src="https://fantasticczone.site/wp-content/uploads/2026/02/89743.jpg" alt="Banti Ajmera">
         </div>
 
-        <div class="verified">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"/></svg>
-            Verified Analyst
+        <div style="color: #00d4ff; font-size: 10px; font-weight: 800; letter-spacing: 2px; margin-bottom: 5px;">
+            ✓ VERIFIED GOLD ANALYST
         </div>
 
         <h1>BANTI AJMERA</h1>
         <p class="tagline">The King of Cricket</p>
         
         <a href="https://t.me/+61yi4RuGCLExYTQ1" class="btn-telegram">
-            Join VIP Telegram
+            JOIN VIP TELEGRAM
         </a>
 
         <div class="stats">
-            <div class="stat-item"><span>💎</span> <b>95% ACCURACY</b> GUARANTEED</div>
-            <div class="stat-item"><span>🏆</span> <b>IPL & PSL</b> UNDEFEATED</div>
-            <div class="stat-item"><span>🚀</span> <b>FASTEST</b> SESSİON UPDATES</div>
+            <div class="stat-item"><span>🔥</span> <b>95% ACCURACY</b> GUARANTEED</div>
+            <div class="stat-item"><span>🏏</span> <b>IPL & PSL</b> UNDEFEATED</div>
+            <div class="stat-item"><span>💰</span> <b>MAX PROFIT</b> STRATEGY</div>
         </div>
 
         <footer>
